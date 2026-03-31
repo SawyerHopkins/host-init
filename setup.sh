@@ -23,7 +23,7 @@ fi
 echo "updating home manager config"
 
 HM_CFG_DIR=~/.config/home-manager
-HM_FOLDERS=("aliases" "git_includes")
+HM_FOLDERS=("aliases" "git_includes" "ssh_includes" "dot_files")
 
 copy_cfg_item () {
   for FOLDER in "${HM_FOLDERS[@]}"; do
@@ -48,7 +48,7 @@ fi
 
 cp ./home.nix ${HM_CFG_DIR}/home.nix
 
-home-manager switch
+home-manager switch -b backup
 zsh
 
 
