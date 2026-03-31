@@ -25,13 +25,26 @@ echo "updating home manager config"
 HM_CFG_DIR=~/.config/home-manager
 HM_FOLDERS=("aliases" "git_includes")
 
-for FOLDER in "${HM_FOLDERS[@]}"; do
-  mkdir -p "${HM_CFG_DIR}/${FOLDER}"
-  
-  if [ -d "${FOLDER}" ]; then
-    cp -r "${FOLDER}/" "${HM_CFG_DIR}/${FOLDER}"
-  fi
-done
+copy_cfg_item () {
+  for FOLDER in "${HM_FOLDERS[@]}"; do
+    mkdir -p "${HM_CFG_DIR}/${FOLDER}"
+
+    if [ -d "${1}/${FOLDER}" ]; then
+      echo "copy ${1}/${FOLDER}/ to ${HM_CFG_DIR}/${FOLDER}/"
+      cp -r "${1}/${FOLDER}/" "${HM_CFG_DIR}"
+    fi
+  done
+}
+
+copy_cfg_item .
+
+if [ -d "setup.d" ]; then
+  for SETUPD in setup.d/*; do
+    if [ -d "${SETUPD}" ]; then
+      copy_cfg_item "./${SETUPD}"
+    fi
+  done
+fi
 
 cp ./home.nix ${HM_CFG_DIR}/home.nix
 
