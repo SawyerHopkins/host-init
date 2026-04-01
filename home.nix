@@ -109,6 +109,12 @@ in {
       enableBashIntegration = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+
+      config = {
+        global = {
+          hide_env_diff = true;
+        };
+      };
     };
     git = {
       enable = true;
