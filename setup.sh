@@ -31,7 +31,7 @@ copy_cfg_item () {
 
     if [ -d "${1}/${FOLDER}" ]; then
       echo "copy ${1}/${FOLDER}/ to ${HM_CFG_DIR}/${FOLDER}/"
-      cp -r "${1}/${FOLDER}/" "${HM_CFG_DIR}"
+      cp -r "${1}/${FOLDER}/" "${HM_CFG_DIR}/${FOLDER}"
     fi
   done
 }

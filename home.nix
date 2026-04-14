@@ -90,6 +90,13 @@ in {
 
   home.shellAliases = importAndMerge ./aliases {};
 
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+    };
+  };
+
   programs = {
     home-manager = {
       # Let Home Manager install and manage itself.
