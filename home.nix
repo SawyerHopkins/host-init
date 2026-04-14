@@ -49,6 +49,7 @@ in {
     # # "Hello, world!" when run.
     # pkgs.hello
     pkgs.direnv
+    pkgs.nerd-fonts.jetbrains-mono
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -89,6 +90,8 @@ in {
   };
 
   home.shellAliases = importAndMerge ./aliases {};
+
+  fonts.fontconfig.enable = true;
 
   nix = {
     package = pkgs.nix;
